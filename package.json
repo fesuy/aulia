@@ -1,0 +1,10 @@
+{
+  "name": "@fesuy/aulia",
+  "version": "1.0.0",
+  "description": "IPC",
+  "main": "src/index.js",
+  "type": "module",
+  "repository": "https://github.com/fesuy/aulia.git",
+  "author": "Fesuy <fesuybiz@gmail.com>",
+  "license": "GPLv3"
+}
