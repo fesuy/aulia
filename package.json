@@ -9,5 +9,6 @@
   "license": "GPLv3",
   "dependencies": {
     "@fesuy/log": "https://github.com/fesuy/log.git"
-  }
+  },
+  "devDependencies": {}
 }
