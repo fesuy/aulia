@@ -6,9 +6,5 @@
   "type": "module",
   "repository": "https://github.com/fesuy/aulia.git",
   "author": "Fesuy <fesuybiz@gmail.com>",
-  "license": "GPLv3",
-  "dependencies": {
-    "@fesuy/log": "https://github.com/fesuy/log.git"
-  },
-  "devDependencies": {}
+  "license": "GPLv3"
 }
