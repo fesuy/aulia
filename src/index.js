@@ -22,18 +22,17 @@ class Aulia extends EventEmitter {
     super();
     this.options      = Object.assign(DEFAULT_OPTIONS, options);
     this.options.path = pipe(this.options.path);
+    this.server       = void 0; // initialize server
 
     // Nodemon breaking when socket path exists
     this.cleanUp_();
   }
 
   /**
-   * Remove socket path when already exists
+   * Try remove socket path
    */
   cleanUp_() {
-    if (fs.existsSync(this.options.path)) {
-      fs.unlinkSync(this.options.path);
-    }
+      try { fs.unlinkSync(this.options.path); } catch(e) { /* nothing */  }
   }
 
   /**
@@ -44,7 +43,7 @@ class Aulia extends EventEmitter {
     const server = net.createServer();
 
     server.on('error', err => this.emit('error', err));
-    server.on('listening', () => this.emit('ready'));
+    server.once('listening', () => this.emit('ready'));
 
     try {
       server.listen({ path: this.options.path });
