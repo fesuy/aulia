@@ -141,7 +141,7 @@ class MessageParser extends Stream {
             this.state = 'arglen';
             this._leni = 0;
           } else {
-            // Bad message will never done
+            // bad message
             this.state = 'message';
           }
           break;
