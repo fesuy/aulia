@@ -7,7 +7,5 @@
   "repository": "https://github.com/fesuy/aulia.git",
   "author": "Fesuy <fesuybiz@gmail.com>",
   "license": "GPLv3",
-  "dependencies": {
-    "uuid": "^9.0.1"
-  }
+  "dependencies": {}
 }
