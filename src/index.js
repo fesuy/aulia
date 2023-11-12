@@ -81,27 +81,17 @@ class Aulia extends EventEmitter {
         // Skip if that is not an array
         if (!Array.isArray(msg)) return;
 
-        for (let k in msg) {
-          // normalize k to int
-          k = parseInt(k);
+        // Skip if that is not buffer
+        if (!Buffer.isBuffer(msg[0]) || !Buffer.isBuffer(msg[1])) return;
 
-          // Skip if that is not buffer
-          if (!Buffer.isBuffer(msg[k])) return;
+        try {
+          // Scope message
+          msg[0] = msg[0].toString();
+          // Data message
+          msg[1] = JSON.parse(msg[1].toString());
 
-          switch(k) {
-            case 0:
-              msg[0] = msg[0].toString();
-              break;
-            case 1:
-              try {
-                msg[1] = JSON.parse(msg[1].toString());
-              } catch (err) { /* nothing to do */ }
-
-              break;
-          }
-        }
-
-        this.emit('message', msg);
+          this.emit(msg[0], msg[1]);
+        } catch (err) { /* nothing to do */ }
       }
     }
   }
