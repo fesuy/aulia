@@ -16,7 +16,9 @@ class Client extends EventEmitter {
 
   constructor(options) {
     super();
-    this.options    = Object.assign(DEFAULT_OPTIONS, options);
+    options         = options || {};
+    this.path       = options.path || DEFAULT_OPTIONS.path;
+    this.encoding   = options.encoding || DEFAULT_OPTIONS.encoding;
     this.socket     = new net.Socket();
     this.connected  = false;
   }
@@ -29,13 +31,12 @@ class Client extends EventEmitter {
       this.emit('connected');
     });
 
-    this.socket.connect(this.options);
+    this.socket.connect({ path: this.path });
   }
 
   sendTo(scope, msg) {
     scope = Buffer.from(scope);
-    msg = Buffer.from(msg);
-
+    msg = Buffer.from(JSON.stringify(msg));
     let encoded = MessageParser.encode([scope, msg]);
     this.socket.write(encoded);
   }
